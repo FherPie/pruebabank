@@ -9,8 +9,9 @@ import { RequestClient } from  'src/app/models/RequestClient';
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent implements OnInit {
+  
   currentClient= {
-    clienteId:0,
+    id:0,
     persona: {
       edad: 0,
       email: "",
@@ -24,8 +25,8 @@ export class ClientDetailsComponent implements OnInit {
     estado: "",
     password: "",
   };
+  
   message = '';
-
 
   constructor(
     private clientService: ClientService,
@@ -43,7 +44,7 @@ export class ClientDetailsComponent implements OnInit {
           this.currentClient = data;
           console.log("editar lo siguiente");
           console.log(data);
-          
+       
         },
         error => {
           console.log(error);
@@ -52,7 +53,7 @@ export class ClientDetailsComponent implements OnInit {
 
   updateClient(): void {
     console.log(this.currentClient);
-    this.clientService.update(this.currentClient.clienteId, this.currentClient)
+    this.clientService.update(this.currentClient.id, this.currentClient)
       .subscribe(
         response => {
           console.log("CONSOLA RESPONSE");
@@ -67,7 +68,7 @@ export class ClientDetailsComponent implements OnInit {
 
   
   deleteClient(): void {
-    this.clientService.delete(this.currentClient.clienteId)
+    this.clientService.delete(this.currentClient.id)
       .subscribe(
         response => {
           console.log(response);

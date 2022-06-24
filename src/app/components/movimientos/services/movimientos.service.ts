@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import{ GlobalConstants } from '../../../global-constants';
-const baseUrl = GlobalConstants.baseUrlCuentas;
+const baseUrl = GlobalConstants.baseUrlMovimientos;
 @Injectable({
   providedIn: 'root'
 })
-export class CuentasService {
-  
+export class MovimientosService {
   constructor(private http: HttpClient) { }
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
@@ -27,7 +26,7 @@ export class CuentasService {
   deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
   }
-  searchByNumeroCuenta(numeroCuenta: any): Observable<any> {
+  findByNumeroCuenta(numeroCuenta: any): Observable<any> {
     return this.http.get(`${baseUrl}?numeroCuenta=${numeroCuenta}`);
   }
 }

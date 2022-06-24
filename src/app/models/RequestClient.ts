@@ -1,3 +1,4 @@
+import { Cuenta } from "./cuenta.model";
 
 export class RequestClient {
     clienteId?:number;
@@ -13,4 +14,5 @@ export class RequestClient {
     } 
     estado?: string;
     password?: string;
+    cuenta:Cuenta;
   }

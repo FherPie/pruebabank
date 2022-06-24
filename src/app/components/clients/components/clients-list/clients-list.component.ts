@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input , Output, EventEmitter  } from '@angular/core';
 import { ClientService } from 'src/app/components/clients/services/client.service';
 import { RequestClient } from  'src/app/models/RequestClient';
+import { Client } from  'src/app/models/client.model';
 
 
 @Component({
@@ -9,14 +10,18 @@ import { RequestClient } from  'src/app/models/RequestClient';
   styleUrls: ['./clients-list.component.css']
 })
 export class ClientsListComponent implements OnInit {
-  clients: RequestClient[] = [];
 
+  @Input() showTitle: boolean= true;
+  @Input() showEditButton: boolean= true;
+  @Output() selectClientEvent = new EventEmitter<number>();
+
+  title="Clientes"
+  clients: Client[] = [];
   currentClient;
-  
   currentIndex = -1;
   identification = '';
   constructor(private clienteService: ClientService) {
-
+    
     this.retrieveClients();
    }
   ngOnInit(): void {
@@ -38,12 +43,13 @@ export class ClientsListComponent implements OnInit {
     this.currentClient= new RequestClient();
     this.currentIndex = -1;
   }
-  setActiveClient(client: RequestClient, index: number): void {
+  setActiveClient(client: Client, index: number): void {
     this.currentClient = client;
     this.currentIndex = index;
-    console.log(client);
-    console.log(index);
-    console.log(client.clienteId);
+    // console.log(client);
+    // console.log(index);
+    // console.log(client.clienteId);
+    this.selectClientEvent.emit(client.clienteId);
   }
   removeAllClients(): void {
     this.clienteService.deleteAll()
@@ -57,6 +63,9 @@ export class ClientsListComponent implements OnInit {
         });
   }
   searchIdentification(): void {
+    if(this.identification==null){  
+      this.identification='';
+    }
     this.clienteService.findByIdentification(this.identification)
       .subscribe(
         data => {

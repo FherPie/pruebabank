@@ -10,18 +10,24 @@ import { ClientsListComponent } from './components/clients/components/clients-li
 import { AddCuentaComponent } from './components/cuentas/components/add-cuenta/add-cuenta.component';
 import { CuentaDetailsComponent } from './components/cuentas/components/cuenta-details/cuenta-details.component';
 import { CuentasListComponent } from './components/cuentas/components/cuentas-list/cuentas-list.component';
+import { MovimientosListComponent } from './components/movimientos/componentes/movimientos-list/movimientos-list.component';
+import { MovimientosDetailsComponent } from './components/movimientos/componentes/movimientos-details/movimientos-details.component';
+import { AddMovimientoComponent } from './components/movimientos/componentes/add-movimiento/add-movimiento.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'clients', pathMatch: 'full' },
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
   // { path: 'add', component: AddTutorialComponent },
-  { path: 'clients', component: ClientsListComponent },
+  { path: 'clients', component: ClientsListComponent, },
   { path: 'clients/:id', component: ClientDetailsComponent },
   { path: 'addClients', component: AddClientComponent },
   { path: 'cuentas', component: CuentasListComponent },
-  { path: 'cuentas/:id', component: CuentaDetailsComponent },
-  { path: 'addCuentas', component: AddCuentaComponent }
+  { path: 'cuenta/:id', component: CuentaDetailsComponent },
+  { path: 'addCuentas', component: AddCuentaComponent },
+  { path: 'movimientos', component: MovimientosListComponent },
+  { path: 'movimiento/:id', component: MovimientosDetailsComponent },
+  { path: 'addMovimientos', component: AddMovimientoComponent }
 ];
 
 @NgModule({
